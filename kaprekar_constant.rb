@@ -9,14 +9,22 @@
 # Tasks after implementation:
 # Count steps to completion
 
-num = 1234
-puts "hi there. you starting number is #{num}"
+num = 2035
+puts "Hi there. Your starting number is #{num}."
+
+def sort_num(num)
+  num.to_s.chars.sort
+end
+
+def ascend_padded(num)
+  ascending = sort_num(num).join.to_i
+  ascend_padding = sprintf('%04d' % ascending)
+  return ascend_padding, ascending
+end
 
 until num == 6174
-  num_sorted = num.to_s.split('').sort
-  ascending = num_sorted.join('').to_i
-  ascend_padding = sprintf('%04d' % ascending)
-  descending = num_sorted.reverse.join('').to_i
+  ascend_padding, ascending = ascend_padded(num)
+  descending = sort_num(num).reverse.join.to_i
   num = descending - ascending
   puts "#{descending} - #{ascend_padding} = #{num}"
 end
